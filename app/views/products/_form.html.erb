@@ -1,33 +1,42 @@
 <%= form_for(@product) do |f| %>
-  <% if @product.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
-
-      <ul>
-      <% @product.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description, :rows => 6 %>
-  </div>
-  <div class="field">
-    <%= f.label :image_url %><br />
-    <%= f.text_field :image_url %>
-  </div>
-  <div class="field">
-    <%= f.label :price %><br />
-    <%= f.text_field :price %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<% if @product.errors.any? %>
+<div id="error_explanation">
+	<h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+	<ul>
+		<% @product.errors.full_messages.each do |msg| %>
+		<li>
+			<%= msg %>
+		</li>
+		<% end %>
+	</ul>
+</div>
 <% end %>
+
+<%= form_tag do %>
+<div class="field">
+	<%= f.label :title %>
+	<br />
+	<%= f.text_field :title %>
+</div>
+<div class="field">
+	<%= f.label :description %>
+	<br />
+	<%= f.text_area :description, :rows => 6 %>
+</div>
+<div class="field">
+	<%= f.label :image_url %>
+	<br />
+	<%= select_tag(:image_url, options_for_select([['/images/debug.jpg', 1], ['/images/logo.png', 2], ['/images/rails.png', 3], ['/images/rtp.jpg', 4], ['/images/ruby.jpg', 5], ['/images/wd4d.jpg', 6]], 6)) %>
+
+</div> 
+<div class="field">
+	<%= f.label :price %>
+	<br />
+	<%= f.text_field :price %>
+</div>
+<div class="actions">
+	<%= f.submit %>
+</div>
+<% end %>
+
+<% end %> 
